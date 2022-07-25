@@ -10,8 +10,8 @@ import { toast } from "react-toastify";
 
 //You can create a new instance of axios with a custom config.
 export const http = axios.create({
-    // baseURL: "http://3.6.88.59:80/api",
-    baseURL:"http://localhost:4003/api/"
+    // baseURL: "http://3.6.88.59:8084/api",
+    baseURL:"http://localhost:4004/api/"
 });
 
 

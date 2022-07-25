@@ -8,6 +8,7 @@ import {
             TablePagination,
         } from '@material-ui/core';
 import ShopTableRecords from '../shops/shopTableRecords';
+import TokenTableRecords from '../tokens/tokenTableRecords';
 import * as shopTypes from '../../redux/types/shopTypes';
 import * as userTypes from '../../redux/types/userTypes';
 import SearchBar from "material-ui-search-bar";
@@ -110,9 +111,9 @@ function MTable(props) {
                 }
                
             }
-            // else if(flag==='COMPANIES'){
-            //     return row.companyName.toLowerCase().includes(searchedVal.toLowerCase());
-            // }
+            else if(flag==='TOKENS'){
+                return row.companyName.toLowerCase().includes(searchedVal.toLowerCase());
+            }
            
             
         })
@@ -134,9 +135,9 @@ function MTable(props) {
     
                 return <ShopTableRecords editFunc={props.editFunc} rows={props.rows} page={props.page} rowsPerPage={props.rowsPerPage}  />;
     
-            // case 'COMPANIES':
+            case 'COMPANIES':
     
-            //     return <CompanyTableRecords editFunc={props.editFunc} rows={props.rows} page={props.page} rowsPerPage={props.rowsPerPage}  />;  
+                return <TokenTableRecords editFunc={props.editFunc} rows={props.rows} page={props.page} rowsPerPage={props.rowsPerPage}  />;  
     
           default:
     

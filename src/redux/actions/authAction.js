@@ -19,7 +19,7 @@ export const authAction = (payload)=>{
                 }
                 //this is the dispatch function passed as argument from redux
                 dispatch({
-                    type: shopTypes.AUTHENTICATE_USER,
+                    type: userTypes.AUTHENTICATE_USER,
                     payload: data
                 });
         }

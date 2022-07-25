@@ -4,73 +4,59 @@ import { connect } from "react-redux";
 import PageHeading from "../common/pageHeading";
 import MTable from "../common/Mtable";
 import ModalComponent from "../common/modal/modal";
+
 import { 
-	getShops, 
-	emptyShopDetails, 
-	searchShops, 
-	getShopDetail
-	 } from "../../redux/actions/shopActions";
-import * as shopTypes from '../../redux/types/shopTypes';
-import { useFetching } from "../../Hooks/apiCall";
+	getTokens, 
+	emptyTokenDetails, 
+	searchTokens, 
+	getTokenDetail
+	 } from "../../redux/actions/tokenActions";
+import * as tokenTypes from '../../redux/types/tokenTypes';
 
-const Shops = (props) => {
 
-	const { shops, searchShops, getShopDetail, emptyShopDetails } = props;
 
- const [addShopModalState, toggleAddShopModalState] = useState(false);
- const [editUser, setEditUser] = useState(false);
+const Tokens=(props)=>{
 
- const toggleAddShopModal = async () => {
- 	toggleAddShopModalState(!addShopModalState);
- 	setEditShop(false);
- 	await emptyShopDetails();
- }
+	const { tokens, searchTokens, getTokenDetail, emptyTokenDetails } = props;
 
-  const editFunc = async(id) => {
- 		await getShopDetail(id);
- 		setEditShop(true);
- 		toggleAddShopModalState(!addShopModalState);
- }
-
-useFetching(getShops);
-
-	return (
-
+	return(
 		<Container className="pageContainer" >
 				<PageHeading
-					heading="Shops"
+					heading="Tokens"
 					showButton={true}
-					buttonLabel="Add Shop"
+					buttonLabel=""
 					showSearch={true}
-					searchAction={searchShops}
-					onClick={toggleAddShopModal}
+					searchAction={searchTokens}
+					//onClick={toggleAddShopModal}
 				/>
-
+{/* 
 				<MTable 
-					tableData={users.items}
-					contentFlag={shopTypes.USER_FLAG}
-					editFunc={editFunc}
+					tableData={tokens.items}
+					contentFlag={tokenTypes.TOKEN_FLAG}
+					//editFunc={editFunc}
 				/>
 				<ModalComponent
 					title={ editShop ? "Edit Shop": "Add Shop" }
 					modalState={addShopModalState}
-					message={<AddUser toggleModal={toggleAddShopModal} editFlag={editShop} />}
+					message={<ShopReg toggleModal={toggleAddShopModal} editFlag={editShop} />}
 					toggleModal={toggleAddShopModal}
-				/>
+				/> */}
 
 		</Container>
 
 	)
 }
 
-const mapStateToProps = (state) => ({
-	shops: state.shopReducer.shoplist
-});
+// const mapStateToProps = (state) => ({
+// 	tokens: state.tokenReducer.tokenlist
+// });
 
-const mapDipatchToProps = {
-	searchShops,
-	getShopDetail,
-	emptyShopDetails
-}
+// const mapDipatchToProps = {
+// 	searchTokens,
+// 	getTokenDetail,
+// 	emptyTokenDetails
+// }
 
-export default connect(mapStateToProps, mapDipatchToProps)(Users);
+// export default connect(mapStateToProps, mapDipatchToProps)(Tokens);
+
+export default Tokens;

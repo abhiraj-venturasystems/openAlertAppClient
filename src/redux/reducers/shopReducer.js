@@ -15,17 +15,12 @@ const initState = {
 
 const shopReducer = (state=initState, action)=>{
     switch(action.type){
-        case(shopTypes.AUTHENTICATE_USER):
-         return {
-            ...state,
-            loginDetails: {...action.payload},
-            tokenExpire:false
-         }
+       
          case(shopTypes.SHOP_REGISTRATION):
-         return {
-            ...state,
-            shopDetails: {...action.payload}
-         }
+            return {
+                ...state,
+                shopDetails: {...action.payload}
+            }
          default:
             return state;
     }

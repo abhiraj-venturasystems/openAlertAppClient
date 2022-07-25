@@ -19,10 +19,12 @@ import { ToastContainer } from 'react-toastify';
 //window.store=mystore;
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <Provider store={mystore}>
-     <ToastContainer />
-        <App />      
-  </Provider>
+  <React.StrictMode>
+    <Provider store={mystore}>
+      <ToastContainer />
+          <App />      
+    </Provider>
+  </React.StrictMode>
 );
 
 

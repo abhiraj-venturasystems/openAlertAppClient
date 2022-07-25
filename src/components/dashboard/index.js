@@ -7,7 +7,7 @@ const Dashboard = props => {
 
 	return (
             <Container className="pageContainer" >
-                This is the dashboard
+                Dashboard
             </Container>
 
 		);

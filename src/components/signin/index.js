@@ -44,7 +44,7 @@ const Signin = (props)=>{
                             try{
                                 //in the onSubmit, we are doing an asynchronous action so use async and await keyword
                                 await handleSubmit(e, authAction);
-                                navigate("/cms/dashboard");
+                               navigate("/cms/dashboard");
                             }
                             catch(err){
                                 console.log(err);

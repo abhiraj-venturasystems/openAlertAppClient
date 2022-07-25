@@ -1,24 +1,24 @@
 import React from 'react';
-import UserColumnHead from '../../constants/userTableColumnsHead';
-import UserColumns from '../../constants/userTableColumns';
+import ShopColumnHead from '../../constants/shopTableColumnsHead';
+import ShopColumns from '../../constants/shopTableColumns';
 import { 
     TableBody,
     TableHead
 } from '@material-ui/core';
 
-const UserTableRecords = (props) => {
+const ShopTableRecords = (props) => {
     const { rows, page, rowsPerPage, editFunc } = props;
     //console.log(rows);
     return (
         <>
             <TableHead>
-                <UserColumnHead />
+                <ShopColumnHead />
             </TableHead>
             <TableBody>
-                <UserColumns editFunc={editFunc} rows={rows} page={page} rowsPerPage={rowsPerPage} />
+                <ShopColumns editFunc={editFunc} rows={rows} page={page} rowsPerPage={rowsPerPage} />
             </TableBody>
         </>
     )
 }
 
-export default UserTableRecords;
+export default ShopTableRecords;

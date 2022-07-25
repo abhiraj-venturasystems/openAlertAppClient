@@ -1,5 +1,6 @@
 import { TagFaces } from '@material-ui/icons';
 import React from 'react';
+import { useNavigate} from "react-router-dom";
 import { Form } from 'react-bootstrap';
 import DatePicker from "react-datepicker";
 import { connect } from "react-redux"
@@ -29,6 +30,8 @@ const ShopReg= (props)=>{
         outlet_logo:''
     }
 
+    const navigate = useNavigate();
+
     const { handleChange, handleSubmit, values, errors }= useFormValidation(initialState);
     const {shopRegAction} = props;
 
@@ -46,7 +49,7 @@ const ShopReg= (props)=>{
                                                 try{
                                                     //in the onSubmit, we are doing an asynchronous action so use async and await keyword
                                                     await handleSubmit(e, shopRegAction, true);
-                                                    //navigate("/shop/dashboard");
+                                                    navigate("/cms/dashboard");
                                                 }
                                                 catch(err){
                                                     console.log(err);

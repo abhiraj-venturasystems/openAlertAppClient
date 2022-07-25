@@ -1,18 +1,15 @@
 import React from 'react';
-import { Switch } from 'react-router-dom';
 import { connect } from "react-redux";
-import PrivateRoute from '../HOC/PrivateRoute';
+import { Navigate, Outlet } from "react-router-dom";
+import { Routes, Route } from 'react-router-dom';
+
 import Header from '../common/header';
 import Sidenav from '../common/sidenav/sidenav';
-import Dashboard from '../dashboard/index';
-import Shops from '../shops/index';
-import Admin from '../admin/index';
 
 
-
-const Layout = (props) => {
+const Layout=(props)=>{
 	const { sidebarToggle } = props;
-	return (
+	return(
 		<>
 			<Header showSidebar={sidebarToggle} />
 			<div
@@ -22,30 +19,15 @@ const Layout = (props) => {
 						: "parent-container removeSidebar"
 					}
 			>
-					<Sidenav />
-					<div className="mainContent">
-					<Switch>
-						<PrivateRoute exact path="/cms/dashboard">
-							<Dashboard />
-						</PrivateRoute>
-
-						<PrivateRoute exact path="/cms/admin">
-							<Admin />
-						</PrivateRoute>	
-
-						<PrivateRoute exact path="/cms/shops">
-							<Shops />
-						</PrivateRoute>		
-
-
-
-					</Switch>
-					</div>
+				<Sidenav />
+				<div className="mainContent">
+					<Outlet />
+				</div>
+				
 			</div>
 		</>
-	);
-};
-
+	)
+}
 
 const mapStateToProps = (state) => ({
 	sidebarToggle: state.sidebarReducer.showSidebar,
