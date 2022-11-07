@@ -10,11 +10,11 @@ import { makeStyles, fade } from '@material-ui/core/styles';
 const useStyles = makeStyles((theme)=>({
 	appBar: {
 		//backgroundColor: fade(theme.palette.common.white, 0.15)
-		//backgroundColor: '#30b8e2',
-		backgroundColor: '#0973b9',
+		backgroundColor: '#1f2e4d',
 	},
 	addButton: {
-		backgroundColor: theme.palette.success.dark
+		//backgroundColor: theme.palette.success.dark
+		backgroundColor:"#f2c720"
 	}
 }));
 

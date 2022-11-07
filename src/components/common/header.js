@@ -24,7 +24,6 @@ const Header = (props)=>{
 		localStorage.removeItem('token');
 		localStorage.removeItem('shopName');
 		localStorage.removeItem('privilegeId');
-		localStorage.removeItem('emailId');
         localStorage.removeItem('loginId');
         localStorage.removeItem('shopLogo');
 		navigate('/');
@@ -66,9 +65,7 @@ const Header = (props)=>{
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                 <Navbar.Collapse id="responsive-navbar-nav">
                     <Nav className="mr-auto">
-                        {
-                            localStorage.getItem('loggedCompanyLogo') ? <img width="100px" height="40px" src={"https://servicecalluploads.s3.ap-south-1.amazonaws.com/companyLogo/"+ localStorage.getItem('loggedCompanyLogo')} /> : ''
-                        }
+
 
                         {
                             localStorage.getItem('loggedCompany') ? <Nav.Link className="loggedinAs">

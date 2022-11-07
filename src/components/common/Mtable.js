@@ -15,6 +15,7 @@ import SearchBar from "material-ui-search-bar";
 import GetAppIcon from '@material-ui/icons/GetApp';
 
 
+
 const useStyles = makeStyles((theme)=>({
   table: {
     minWidth: 650,
@@ -61,9 +62,9 @@ function MTable(props) {
         setRowsPerPage(+event.target.value);
         setPage(0);
     };
-    console.log(tableData);
 
-    const requestSearch = (searchedVal,flag)=>{ 
+    const requestSearch = (searchedVal,flag)=>{
+        
         if(searchedVal!=''){
             setSearchStatus('yes');
         }
@@ -73,46 +74,17 @@ function MTable(props) {
         
         const filteredRows = tableData.filter((row)=> {
             if(flag==='SHOPS'){
-                let matchingPrivilegeId;
-                //make the searched values first letter to Upper case- for Privilege check
-                let firstCapitalString=searchedVal.charAt(0).toUpperCase() + searchedVal.substring(1);
-                const found =  userTypes.privileges.filter(element => element.Role.indexOf(firstCapitalString) !== -1 );
-                if(found.length > 0){
-                   matchingPrivilegeId = found[0]._id ? found[0]._id : '';
-                }
-                else{
-                    matchingPrivilegeId = '';
-                }
-                if(searchedVal==""){
-                    matchingPrivilegeId=""
-                }
-                if(row.privilegeId=='3'){
-                    if(matchingPrivilegeId!=""){
-                        return row.privilegeId.toString().includes(matchingPrivilegeId.toString());
-                   
-                    }
-                    else{
-                        return  row.fullName.toLowerCase().includes(searchedVal.toLowerCase()) ||
-                            row.email.toLowerCase().includes(searchedVal.toLowerCase()) ||
-                            row.companyId.companyName.toLowerCase().includes(searchedVal.toLowerCase()); 
-                           // row.privilegeId.toString().includes(matchingPrivilegeId);
-                    }
-                }
-                else{
-                    if(matchingPrivilegeId!=""){
-                        return row.privilegeId.toString().includes(matchingPrivilegeId.toString());
-                        
-                    }
-                    else{
-                        return  row.fullName.toLowerCase().includes(searchedVal.toLowerCase()) ||
-                            row.email.toLowerCase().includes(searchedVal.toLowerCase());
-                    }
-                    
-                }
+                        return row.shopName.toLowerCase().includes(searchedVal.toLowerCase()) ||
+                        row.shopId.toLowerCase().includes(searchedVal.toLowerCase()) ||
+                        moment(row.subscriptionStartDate).format('YYYY-MM-DD').includes(searchedVal) ||
+                        moment(row.subscriptionEndDate).format('YYYY-MM-DD').includes(searchedVal)||
+                        row.outletGroup.toLowerCase().includes(searchedVal.toLowerCase());
                
             }
             else if(flag==='TOKENS'){
-                return row.companyName.toLowerCase().includes(searchedVal.toLowerCase());
+                return row.shopId.shopName.toLowerCase().includes(searchedVal.toLowerCase()) ||
+                       (row.shopId.shopId + row.tokenNumber).toLowerCase().includes(searchedVal.toLowerCase()) ||
+                       row.dateOfReg.toLowerCase().includes(searchedVal.toLowerCase()) ;
             }
            
             
@@ -128,14 +100,18 @@ function MTable(props) {
 
 
     function TableRecords(props) {
-
+        
         switch(props.flag) {
     
-            case 'SHOPS':
+           case 'SHOPS':
+                return <ShopTableRecords 
+                           editFunc={props.editFunc} 
+                           rows={props.rows} 
+                           page={props.page} 
+                           rowsPerPage={props.rowsPerPage}  
+                       />;
     
-                return <ShopTableRecords editFunc={props.editFunc} rows={props.rows} page={props.page} rowsPerPage={props.rowsPerPage}  />;
-    
-            case 'COMPANIES':
+            case 'TOKENS':
     
                 return <TokenTableRecords editFunc={props.editFunc} rows={props.rows} page={props.page} rowsPerPage={props.rowsPerPage}  />;  
     
@@ -152,7 +128,7 @@ function MTable(props) {
   return (
    
       <>
-        <SearchBar
+         <SearchBar
             value={searched}
             onChange={(searchVal) => requestSearch(searchVal,contentFlag)}
             onCancelSearch={() => cancelSearch()}
@@ -163,19 +139,26 @@ function MTable(props) {
         <TableContainer component={Paper} className={classes.tableContainer}>
        
         <Table className={classes.table} aria-label="simple table" id='mytable-to-xls' >
-            <TableRecords detailedPage={detailedPage} editFunc={editFunc} deleteFunc={deleteFunc} flag={contentFlag} rows={rows} page={page} rowsPerPage={rowsPerPage} />
-            {/* <TableFooter >
-            </TableFooter> */}
+            <TableRecords 
+                detailedPage={detailedPage} 
+                editFunc={editFunc} 
+                deleteFunc={deleteFunc} 
+                flag={contentFlag} 
+                rows={rows} 
+                page={page} 
+                rowsPerPage={rowsPerPage} 
+            />
+            
         </Table>
         </TableContainer>
-        <TablePagination xs={12}
+       <TablePagination xs={12}
                     rowsPerPageOptions={[5, 10, 15]}
                     component="div"
                     count={rows.length}
                     rowsPerPage={rowsPerPage}
                     page={page}
-                    onChangePage={handleChangePage}
-                    onChangeRowsPerPage={handleChangeRowsPerPage}
+                    onPageChange={handleChangePage}
+                    onRowsPerPageChange={handleChangeRowsPerPage}
                 />
     </>
   );

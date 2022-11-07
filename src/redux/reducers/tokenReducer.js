@@ -2,7 +2,7 @@ import * as tokenTypes  from '../types/tokenTypes';
 
 const initState = {
     tokenExpire: false,
-    tokenlist: { items: [], count: 0 },
+    tokenlist: { items: [], count: 0 , activeCount:0, pendingCount:0 },
 	tokenDetail: {}
 }
 
@@ -15,7 +15,9 @@ const tokenReducer =  (state=initState, action) => {
                     ...state,
                     tokenlist: { 
                         items: [...action.payload],
-                        count: action.tokenCount
+                        count: action.tokenCount,
+                        activeCount: action.activeCount,
+                        pendingCount: action.pendingCount
                     }
                 };
             case tokenTypes.GET_TOKEN_DETAILS:

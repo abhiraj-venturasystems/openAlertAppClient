@@ -3,7 +3,7 @@ import * as shopTypes from '../types/shopTypes.js';
 const initState = {
     loginDetails:{},
     tokenExpire: false,
-    shopDetails:{},
+    shoplist:{items:[], count:0},
 }
 
 //Reducers provide a way to update an application’s state using an action.
@@ -19,8 +19,29 @@ const shopReducer = (state=initState, action)=>{
          case(shopTypes.SHOP_REGISTRATION):
             return {
                 ...state,
-                shopDetails: {...action.payload}
+                shoplist: { 
+                    items: [...action.payload],
+                    count: action.shopCount
+                }
             }
+        case shopTypes.GET_SHOPS:
+            return {
+                 ...state,
+                shoplist: { 
+                        items: [...action.payload],
+                        count: action.shopCount
+                    }
+                };
+        case shopTypes.GET_SHOP_DETAILS:
+             return {
+                        ...state,
+                        shopDetail: { ...action.payload }
+                    }
+        case shopTypes.EMPTY_SHOP_DETAILS:
+             return {
+                        ...state,
+                        shopDetail: {}
+                    }
          default:
             return state;
     }

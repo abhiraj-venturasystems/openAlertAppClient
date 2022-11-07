@@ -16,8 +16,8 @@ const useStyles = makeStyles((theme)=>({
     tableHeaderCell: {
         fontWeight:'bold',
        // backgroundColor:theme.palette.primary.dark,
-        backgroundColor: '#0973b9',
-        color: theme.palette.getContrastText(theme.palette.primary.dark)
+        backgroundColor: '#1f2e4d',
+        color: theme.palette.getContrastText('#1f2e4d')
     }
   }));
 
@@ -27,7 +27,7 @@ const TokenColumnHead= () =>{
         <TableRow>
             <TableCell className={classes.tableHeaderCell}>Token Number</TableCell>
             <TableCell className={classes.tableHeaderCell}>Shop Name</TableCell>
-            <TableCell className={classes.tableHeaderCell}>Registration Date</TableCell>
+            <TableCell className={classes.tableHeaderCell}>Event Time</TableCell>
             <TableCell className={classes.tableHeaderCell}>Status</TableCell>
             <TableCell className={classes.tableHeaderCell}>Action</TableCell>
           </TableRow>

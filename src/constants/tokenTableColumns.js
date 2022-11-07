@@ -46,10 +46,10 @@ const TokenColumns= (props) =>{
             {rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => (
                 <TableRow key={row._id}>
                 <TableCell component="th" scope="row">
-                <Typography className={classes.fullname}>{row.tokenNumber}</Typography>
+                <Typography className={classes.fullname}>{row.shopId.shopId + row.tokenNumber}</Typography>
                 </TableCell>
-                <TableCell >{row.shopName}</TableCell>
-                <TableCell >{row.dateOfReg}</TableCell>
+                <TableCell >{row.shopId.shopName}</TableCell>
+                <TableCell >{row.updatedAt}</TableCell>
                 <TableCell >
                     <Switch 
                         name="status" 

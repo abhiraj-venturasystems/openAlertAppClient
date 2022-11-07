@@ -1,6 +1,6 @@
 import { http } from './http.js';
 
-export const regApi = async(payload)=>{
+export const addShopApi = async(payload)=>{
    return await http.post('/admin/shop/shopReg', payload);
 }
 
@@ -8,10 +8,9 @@ export const updateShopApi = async (data, id) => {
 	await http.put(`/cms/shop/${id}`, data);
 }
 
-export const getShopsApi = async (limit, skip, query) => 
-	await http.get(
-		`/cms/shop/getShopsList?limit=${limit}&skip=${skip}&query=${query}`
-	);
+export const getShopsApi = async (limit, skip, query) => {
+	return await http.get( `/cms/shop/getShopsList?limit=${limit}&skip=${skip}&query=${query}` );
+}
 
 export const getShopDetailApi =  async id =>
 	await http.get(

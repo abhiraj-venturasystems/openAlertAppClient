@@ -1,3 +1,5 @@
+
+
 //import { createStore } from 'redux'; is now Deprecated now using redux toolkit
 //import thunk from 'redux-thunk'; not needed because The redux-thunk middleware was automatically added
 //const middlewareEnhancer = applyMiddleware(thunk);

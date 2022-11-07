@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import PageHeading from "../common/pageHeading";
 import MTable from "../common/Mtable";
 import ModalComponent from "../common/modal/modal";
-import ShopReg from "./reg.js";
+import AddShop from "./addShop.js";
 import { 
 	getShops, 
 	emptyShopDetails, 
@@ -33,11 +33,12 @@ const Shops = (props) => {
  		toggleAddShopModalState(!addShopModalState);
  }
 
-useFetching(getShops);
+ useFetching(getShops);
+
 
 	return (
 
-		<Container className="pageContainer" >yes shop here
+		<Container className="pageContainer" >
 				<PageHeading
 					heading="Shops"
 					showButton={true}
@@ -47,7 +48,7 @@ useFetching(getShops);
 					onClick={toggleAddShopModal}
 				/>
 
-				{/* <MTable 
+				 <MTable 
 					tableData={shops.items}
 					contentFlag={shopTypes.SHOP_FLAG}
 					editFunc={editFunc}
@@ -55,25 +56,26 @@ useFetching(getShops);
 				<ModalComponent
 					title={ editShop ? "Edit Shop": "Add Shop" }
 					modalState={addShopModalState}
-					message={<ShopReg toggleModal={toggleAddShopModal} editFlag={editShop} />}
+					message={<AddShop toggleModal={toggleAddShopModal} editFlag={editShop} />}
 					toggleModal={toggleAddShopModal}
-				/> */}
+				/>
 
 		</Container>
 
 	)
 }
 
+//whatever function we pass as first argument of connect will return the state of redux store
 const mapStateToProps = (state) => ({
 	shops: state.shopReducer.shoplist
+
 });
 
+//we can pass the dispatch actions to the store as 2nd argument of connect()
 const mapDipatchToProps = {
 	searchShops,
 	getShopDetail,
 	emptyShopDetails
 }
 
-// export default connect(mapStateToProps, mapDipatchToProps)(Shops);
-
-export default Shops;
+ export default connect(mapStateToProps, mapDipatchToProps)(Shops);

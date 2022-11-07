@@ -8,15 +8,20 @@ import {
 
 const ShopTableRecords = (props) => {
     const { rows, page, rowsPerPage, editFunc } = props;
-    //console.log(rows);
+
     return (
         <>
             <TableHead>
                 <ShopColumnHead />
             </TableHead>
             <TableBody>
-                <ShopColumns editFunc={editFunc} rows={rows} page={page} rowsPerPage={rowsPerPage} />
-            </TableBody>
+                <ShopColumns 
+                    editFunc={editFunc} 
+                    rows={rows} 
+                    page={page} 
+                    rowsPerPage={rowsPerPage} 
+                />
+            </TableBody> 
         </>
     )
 }

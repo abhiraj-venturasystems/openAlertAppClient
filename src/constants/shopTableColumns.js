@@ -28,7 +28,7 @@ const useStyles = makeStyles((theme)=>({
         backgroundColor:theme.palette.primary.dark,
         color: theme.palette.getContrastText(theme.palette.primary.dark)
     },
-    fullname:{
+    shopName:{
         fontWeight: 'bold',
         color:theme.palette.secondary.dark
       }
@@ -39,28 +39,30 @@ const ShopColumns= (props) =>{
     const { rows, page, rowsPerPage, shopEnableDisable, editFunc } = props;
     //const [userStatusState, setUserStatusState]= useState();
 
-    //console.log(rows);
-
     return(
         <>
-            {rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => (
-                <TableRow key={row._id}>
-                <TableCell component="th" scope="row">
-                <Typography className={classes.fullname}>{row.shopName}</Typography>
-                </TableCell>
-                <TableCell >{row.shopId}</TableCell>
-                <TableCell >{row.subscriptionStartDate}</TableCell>
-                <TableCell >{row.subscriptionEndDate}</TableCell>
+    
+            {
+            
+            rows && rows.length && rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => (
+
+                 <TableRow key={row._id}>
+                 <TableCell component="th" scope="row">
+                 <Typography className={classes.shopName}>{row.shopName}</Typography>
+                 </TableCell>
+                 <TableCell >{row.shopId}</TableCell>
+                 <TableCell >{row.subscriptionStartDate}</TableCell>
+                 <TableCell >{row.subscriptionEndDate}</TableCell>
                 <TableCell >{row.outletGroup}</TableCell>
-                <TableCell >
-                    <Switch 
+                 <TableCell >
+                     <Switch 
                         name="status" 
-                        color="primary" 
+                         color="primary" 
                         checked={row.status}
-                        onChange={() => shopEnableDisable(row._id, row.status)}
-                    />
+                         onChange={() => shopEnableDisable(row._id, row.status)}
+                     />
                 </TableCell>
-                <TableCell ><Edit onClick={() => editFunc(row._id)}  /></TableCell>
+                 <TableCell ><Edit onClick={() => editFunc(row._id)}  /></TableCell> 
                 </TableRow>
             ))}
         </>

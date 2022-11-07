@@ -5,4 +5,4 @@ export const loginApi = async(data)=>{
 }
 
 //here function is reduced to single line, so return is not needed
-export const logoutApi = async () => await http.post('cms/logout');
+export const logoutApi = async () => await http.post('cms/shop/logout');

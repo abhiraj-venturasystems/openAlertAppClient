@@ -5,16 +5,22 @@ import * as shopServices from "../services/shopServices";
 //action creator is a function that dispatches an action
 
 //create shop
-export const shopRegAction = (payload)=>{ 
+export const addShopAction = (payload)=>{ 
     //console.log(...payload);
     return async(dispatch)=>{
-        const {data} = await shopServices.regApi(payload);
+        const {data} = await shopServices.addShopApi(payload);
         dispatch({
             type:shopTypes.SHOP_REGISTRATION,
             action: data
         });
     }
 }
+
+export const updateShopAction = body => async dispatch => {
+	let id = body.shopId;
+	await shopServices.updateShopApi(body, id);
+	getShops()(dispatch);
+};
 
 export const getShops = (limit = 10, skip = 0, query = '', pagination=true) => async dispatch => {
 	try{  
@@ -45,6 +51,7 @@ export const searchShops = (query) => async dispatch => {
 //get shop details
 export const getShopDetail = (id) => async dispatch => {
 	try {
+		
 			const {data} = await shopServices.getShopDetailApi(id);
 			dispatch({
 				type: shopTypes.GET_SHOP_DETAILS,

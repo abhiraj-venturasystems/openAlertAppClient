@@ -75,10 +75,10 @@ const Signin = (props)=>{
                             />
                         </InputGroup>
                     
-                        <Button variant="contained" color="primary" type='submit' fullWidth>
+                        <Button variant="contained" style={{backgroundColor:"#f2c720"}} color="primary" type='submit' fullWidth>
                             Login
                         </Button>
-                        <p className="small fw-bold mt-2 pt-1 mb-0">Don't have an account? <NavLink className={'link-danger'} to={'/shop/reg'}>Register</NavLink></p>
+                        {/* <p className="small fw-bold mt-2 pt-1 mb-0">Don't have an account? <NavLink className={'link-danger'} to={'/shop/reg'}>Register</NavLink></p> */}
                     </Form>
                 </div>
             </div>

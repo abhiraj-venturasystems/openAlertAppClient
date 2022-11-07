@@ -6,12 +6,15 @@ import * as tokenServices from "../services/tokenServices";
 
 
 export const getTokens = (limit = 10, skip = 0, query = '', pagination=true) => async dispatch => {
+	const shopId=0; //to get tokens for all shops - only for admin
 	try{  
-		 const { data } = await tokenServices.getTokensApi(limit, skip, query, pagination);
+		 const { data } = await tokenServices.getTokensApi(limit, skip, shopId, query, pagination);
 		 dispatch({
 			type: tokenTypes.GET_TOKENS,
 			payload: data.data.items,
-			tokenCount: data.data.total
+			tokenCount: data.data.total,
+			activeCount: data.data.total,
+			pendingCount: data.data.total
 		});
 
 	}

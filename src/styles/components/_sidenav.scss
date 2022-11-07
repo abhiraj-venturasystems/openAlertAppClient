@@ -22,7 +22,7 @@
 }
 
 .sideNavHeader {
-  height: 90px;
+  height: 57px;
   position: relative;
   color: #fff;
   width: inherit;
@@ -40,6 +40,16 @@
 
 .mainlogo{
   height: 80px;
+}
+.logo{
+  padding:5px;
+}
+.app_name{
+	color: #b83f2d;
+  font-weight: bold;
+  font-size:1.1rem;
+  margin-left:20px;
+	display: inline-block;
 }
 
 .avatarStyle {
@@ -61,10 +71,8 @@
   position: fixed;
   width: 270px;
   height: 100vh;
-  background-color: #0973b9;
-  //background-color: #30b8e2;
- // background-color: #7fc2ec;
- //background-color: #343a40;
+  background-color: #1f2e4d;
+
   grid-area: sidebar;
   top: 0;
 }

@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import PageHeading from "../common/pageHeading";
 import MTable from "../common/Mtable";
 import ModalComponent from "../common/modal/modal";
+import { useFetching } from "../../Hooks/apiCall";
 
 import { 
 	getTokens, 
@@ -19,23 +20,24 @@ const Tokens=(props)=>{
 
 	const { tokens, searchTokens, getTokenDetail, emptyTokenDetails } = props;
 
+	useFetching(getTokens);
+
 	return(
 		<Container className="pageContainer" >
 				<PageHeading
 					heading="Tokens"
-					showButton={true}
-					buttonLabel=""
+					showButton={false}
 					showSearch={true}
 					searchAction={searchTokens}
 					//onClick={toggleAddShopModal}
 				/>
-{/* 
+
 				<MTable 
 					tableData={tokens.items}
 					contentFlag={tokenTypes.TOKEN_FLAG}
 					//editFunc={editFunc}
 				/>
-				<ModalComponent
+	{/* 			<ModalComponent
 					title={ editShop ? "Edit Shop": "Add Shop" }
 					modalState={addShopModalState}
 					message={<ShopReg toggleModal={toggleAddShopModal} editFlag={editShop} />}
@@ -47,16 +49,16 @@ const Tokens=(props)=>{
 	)
 }
 
-// const mapStateToProps = (state) => ({
-// 	tokens: state.tokenReducer.tokenlist
-// });
+const mapStateToProps = (state) => ({
+	tokens: state.tokenReducer.tokenlist
+});
 
-// const mapDipatchToProps = {
-// 	searchTokens,
-// 	getTokenDetail,
-// 	emptyTokenDetails
-// }
+const mapDipatchToProps = {
+	searchTokens,
+	getTokenDetail,
+	emptyTokenDetails
+}
 
-// export default connect(mapStateToProps, mapDipatchToProps)(Tokens);
+export default connect(mapStateToProps, mapDipatchToProps)(Tokens);
 
-export default Tokens;
+//export default Tokens;
